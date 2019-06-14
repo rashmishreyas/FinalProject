@@ -1,0 +1,2150 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<!--
+ExtentReports Library 2.40.2 | http://relevantcodes.com/extentreports-for-selenium/ | https://github.com/anshooarora/
+Copyright (c) 2015, Anshoo Arora (Relevant Codes) | Copyrights licensed under the New BSD License | http://opensource.org/licenses/BSD-3-Clause
+Documentation: http://extentreports.relevantcodes.com 
+-->
+
+<meta charset='UTF-8' /> 
+<meta name='description' content='ExtentReports (by Anshoo Arora) is a reporting library for automation testing for .NET and Java. It creates detailed and beautiful HTML reports for modern browsers. ExtentReports shows test and step summary along with dashboards, system and environment details for quick analysis of your tests.' />
+<meta name='robots' content='noodp, noydir' />
+<meta name='viewport' content='width=device-width, initial-scale=1' />
+
+<title>
+ExtentReports 2.0
+</title>
+
+
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600' rel='stylesheet' type='text/css'>
+<link href='https://cdn.rawgit.com/anshooarora/extentreports/e4f8ea1de961161791c01b99a71a1e17f81125cf/cdn/extent.css' type='text/css' rel='stylesheet' />
+
+<style>
+
+            
+                
+            
+        
+</style>
+</head>
+
+
+<body class='extent standard hide-overflow'>
+<!-- nav -->
+<nav>
+<div class='logo-container'>
+<a class='logo-content' href='http://extentreports.relevantcodes.com'>
+<span>ExtentReports</span>
+</a>
+<a href='#' data-activates='slide-out' class='button-collapse hide-on-large-only'><i class='mdi-navigation-apps'></i></a>
+</div>
+<ul id='slide-out' class='side-nav fixed hide-on-med-and-down'>
+<li class='analysis waves-effect active'><a href='#!' class='test-view' onclick="_updateCurrentStage(0)"><i class='mdi-action-dashboard'></i>Test Details</a></li>
+<li class='analysis waves-effect'><a href='#!' class='dashboard-view'><i class='mdi-action-track-changes'></i></i>Analysis</a></li>
+</ul>
+<span class='report-name'>Automation Report</span> <span class='report-headline'></span>
+<ul class='right hide-on-med-and-down nav-right'>
+<li class='theme-selector' alt='Click to toggle dark theme. To enable by default, use js configuration $("body").addClass("dark");' title='Click to toggle dark theme. To enable by default, use js configuration $("body").addClass("dark");'>
+<i class='mdi-hardware-desktop-windows'></i>
+</li>
+<li>
+<span class='suite-started-time'>2018-10-11 18:09:01</span>
+</li>
+<li>
+<span>v2.40.2</span>
+</li>
+</ul>
+</nav>
+<!-- /nav -->
+
+<!-- container -->
+<div class='container'>
+
+<!-- dashboard -->
+<div id='dashboard-view' class='row'>
+<div class='time-totals'>
+<div class='col l2 m4 s6'>
+<div class='card suite-total-tests'> 
+<span class='panel-name'>Total Tests</span> 
+<span class='total-tests'> <span class='panel-lead'></span> </span> 
+</div> 
+</div>
+<div class='col l2 m4 s6'>
+<div class='card suite-total-steps'> 
+<span class='panel-name'>Total Steps</span> 
+<span class='total-steps'> <span class='panel-lead'></span> </span> 
+</div> 
+</div>
+<div class='col l2 m4 s12'>
+<div class='card suite-total-time-current'> 
+<span class='panel-name'>Total Time Taken (Current Run)</span> 
+<span class='suite-total-time-current-value panel-lead'>2909h 43m 56s+763ms</span> 
+</div> 
+</div>
+<div class='col l2 m4 s12'>
+<div class='card suite-total-time-overall'> 
+<span class='panel-name'>Total Time Taken (Overall)</span> 
+<span class='suite-total-time-overall-value panel-lead'>349h 20963m 1257824s+784ms</span> 
+</div> 
+</div>
+<div class='col l2 m4 s6 suite-start-time'>
+<div class='card accent green-accent'> 
+<span class='panel-name'>Start</span> 
+<span class='panel-lead suite-started-time'>2018-06-12 12:25:05</span> 
+</div> 
+</div>
+<div class='col l2 m4 s6 suite-end-time'>
+<div class='card accent pink-accent'> 
+<span class='panel-name'>End</span> 
+<span class='panel-lead suite-ended-time'>2018-10-11 18:09:01</span> 
+</div> 
+</div>
+</div>
+<div class='charts'>
+<div class='col s12 m6 l4 fh'> 
+<div class='card-panel'> 
+<div>
+<span class='panel-name'>Tests View</span>
+</div> 
+<div class='panel-setting modal-trigger test-count-setting right'>
+<a href='#test-count-setting'><i class='mdi-navigation-more-vert text-md'></i></a>
+</div> 
+<div class='chart-box'>
+<canvas class='text-centered' id='test-analysis'></canvas>
+</div> 
+<div>
+<span class='weight-light'><span class='t-pass-count weight-normal'></span> test(s) passed</span>
+</div> 
+<div>
+<span class='weight-light'><span class='t-fail-count weight-normal'></span> test(s) failed, <span class='t-others-count weight-normal'></span> others</span>
+</div> 
+</div> 
+</div> 
+<div class='col s12 m6 l4 fh'> 
+<div class='card-panel'> 
+<div>
+<span class='panel-name'>Steps View</span>
+</div> 
+<div class='panel-setting modal-trigger step-status-filter right'>
+<a href='#step-status-filter'><i class='mdi-navigation-more-vert text-md'></i></a>
+</div> 
+<div class='chart-box'>
+<canvas class='text-centered' id='step-analysis'></canvas>
+</div> 
+<div>
+<span class='weight-light'><span class='s-pass-count weight-normal'></span> step(s) passed </span>
+</div> 
+<div>
+<span class='weight-light'><span class='s-fail-count weight-normal'></span> step(s) failed, <span class='s-others-count weight-normal'></span> others</span>
+</div> 
+</div> 
+</div>
+<div class='col s12 m12 l4 fh'> 
+<div class='card-panel'> 
+<span class='panel-name'>Pass Percentage</span> 
+<span class='pass-percentage panel-lead'></span> 
+<div class='progress light-blue lighten-3'> 
+<div class='determinate light-blue'></div> 
+</div> 
+</div> 
+</div>
+</div>
+<div class='system-view'>
+<div class='col l4 m12 s12'>
+<div class='card-panel'>
+<span class='label info outline right'>Environment</span>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OS</td>
+<td>Windows 7</td>
+</tr>
+<tr>
+<td>User Name</td>
+<td>UX011746</td>
+</tr>
+<tr>
+<td>Java Version</td>
+<td>1.8.0_171</td>
+</tr>
+<tr>
+<td>Host Name</td>
+<td>TP5VDIDEVTCM623</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<!-- /dashboard -->
+
+<!-- tests -->
+<div id='test-view' class='row _addedTable'>
+<div class='col _addedCell1'>
+<div class='contents'>
+<div class='card-panel heading'>
+<h5>Tests</h5>
+</div>
+<div class='card-panel filters'>
+<div>
+<a data-activates='tests-toggle' data-constrainwidth='true' data-beloworigin='true' data-hover='true' href='#' class='dropdown-button button tests-toggle'><i class='mdi-action-subject icon'></i></a>
+<ul id='tests-toggle' class='dropdown-content'>
+<li class='pass'><a href='#!'>Pass</a></li>
+<li class='fail'><a href='#!'>Fail</a></li>
+<li class='skip'><a href='#!'>Skip</a></li>
+<li class='unknown'><a href='#!'>Unknown</a></li>
+<li class='divider'></li>
+<li class='clear'><a href='#!'>Clear Filters</a></li>
+</ul>
+</div>
+<div>
+<a id='clear-filters' alt='Clear Filters' title='Clear Filters'><i class='mdi-navigation-close icon'></i></a>
+</div>
+<div>&nbsp;&middot;&nbsp;</div>
+<div>
+<a id='enableDashboard' alt='Enable Dashboard' title='Enable Dashboard'><i class='mdi-action-track-changes icon'></i></a>
+</div>
+<div>
+<a id='refreshCharts' alt='Refresh Charts on Filters' title='Refresh Charts on Filters' class='enabled'><i class='mdi-navigation-refresh icon'></i></i></a>
+</div>
+<div>&nbsp;&middot;</div>
+<div class='search' alt='Search Tests' title='Search Tests'>
+<div class='input-field left'>
+<input id='searchTests' type='text' class='validate' placeholder='Search Tests...'>
+</div>
+<i class='mdi-action-search icon'></i>
+</div>
+</div>
+<div class='card-panel no-padding-h no-padding-v no-margin-v'>
+<div class='wrapper'>
+<ul id='test-collection' class='test-collection'>
+<li class='collection-item test displayed active fail ' extentid='cd04b76e-dd31-4128-b633-df5241c2be3f'>
+<div class='test-head'>
+<span class='test-name'>Create Managed Incident </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2018-06-12 12:25:05</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2018-06-12 12:25:26</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 21s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>12:25:26</td>
+<td class='step-details'>org.openqa.selenium.NoSuchElementException: Unable to locate element: /html/body/div/div/div/nav/div/div[3]/div/div/concourse-application-tree/ul/li[12]/ul/li[1]/div/ul/li/a/div[1]/div For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T14:04:26.12Z' System info: host: 'TP5VDIDEVTCM623', ip: '10.25.31.106', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_171' Driver info: org.openqa.selenium.firefox.FirefoxDriver Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 60.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:headless: false, moz:processID: 27240, moz:profile: C:\Users\UX011746\AppData\L..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: XP, platformName: XP, platformVersion: 6.1, rotatable: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}} Session ID: b70c1bcc-d784-4391-a4ca-afb8d2892e91 *** Element info: {Using=xpath, value=/html/body/div/div/div/nav/div/div[3]/div/div/concourse-application-tree/ul/li[12]/ul/li[1]/div/ul/li/a/div[1]/div}<img class="report-img" data-featherlight="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg" src="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg"></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='fd8d91f9-903b-4368-b8e7-a3206bc3daea'>
+<div class='test-head'>
+<span class='test-name'>Create Managed Incident </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2018-06-12 12:33:48</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2018-06-12 12:34:08</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 20s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>12:33:56</td>
+<td class='step-details'>New Incident Creation page</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>12:33:58</td>
+<td class='step-details'>Incident number captured: INC0602440</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>12:34:08</td>
+<td class='step-details'>org.openqa.selenium.ElementNotInteractableException: Element <label id="label.ni.incident.u_incident_manager_required" class=" checkbox-label"> is not reachable by keyboard Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T14:04:26.12Z' System info: host: 'TP5VDIDEVTCM623', ip: '10.25.31.106', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_171' Driver info: org.openqa.selenium.firefox.FirefoxDriver Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 60.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:headless: false, moz:processID: 32360, moz:profile: C:\Users\UX011746\AppData\L..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: XP, platformName: XP, platformVersion: 6.1, rotatable: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}} Session ID: c30d3035-1dc9-42cb-a600-13a2572081b3<img class="report-img" data-featherlight="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg" src="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg"></label></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='92d9a868-60d4-4f09-822f-69b79d63a134'>
+<div class='test-head'>
+<span class='test-name'>Create Managed Incident </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2018-06-12 12:42:06</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2018-06-12 12:42:25</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 19s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>12:42:12</td>
+<td class='step-details'>New Incident Creation page</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>12:42:14</td>
+<td class='step-details'>Incident number captured: INC0602441</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>12:42:25</td>
+<td class='step-details'>org.openqa.selenium.ElementNotInteractableException: Element <label id="label.ni.incident.u_incident_manager_required" class=" checkbox-label"> is not reachable by keyboard Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T14:04:26.12Z' System info: host: 'TP5VDIDEVTCM623', ip: '10.25.31.106', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_171' Driver info: org.openqa.selenium.firefox.FirefoxDriver Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 60.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:headless: false, moz:processID: 28716, moz:profile: C:\Users\UX011746\AppData\L..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: XP, platformName: XP, platformVersion: 6.1, rotatable: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}} Session ID: a0b992c4-c45d-431c-9cdb-47a840f737c5<img class="report-img" data-featherlight="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg" src="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg"></label></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='de137d68-a6c9-4910-90fd-b2f506787a97'>
+<div class='test-head'>
+<span class='test-name'>Create Managed Incident </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2018-06-12 12:52:23</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2018-06-12 12:52:41</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 18s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>12:52:30</td>
+<td class='step-details'>New Incident Creation page</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>12:52:32</td>
+<td class='step-details'>Incident number captured: INC0602442</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>12:52:41</td>
+<td class='step-details'>org.openqa.selenium.ElementNotInteractableException: Element <label id="label.ni.incident.u_incident_manager_required" class=" checkbox-label"> is not reachable by keyboard Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T14:04:26.12Z' System info: host: 'TP5VDIDEVTCM623', ip: '10.25.31.106', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_171' Driver info: org.openqa.selenium.firefox.FirefoxDriver Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 60.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:headless: false, moz:processID: 32936, moz:profile: C:\Users\UX011746\AppData\L..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: XP, platformName: XP, platformVersion: 6.1, rotatable: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}} Session ID: 397836d0-3eef-49ca-a8da-52b8daf7527f<img class="report-img" data-featherlight="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg" src="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg"></label></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='d8ee93b6-e8a1-4a57-9ed6-9d94b77e7a1c'>
+<div class='test-head'>
+<span class='test-name'>Create Managed Incident </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2018-06-12 12:57:43</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2018-06-12 12:58:01</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 18s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>12:57:50</td>
+<td class='step-details'>New Incident Creation page</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>12:57:52</td>
+<td class='step-details'>Incident number captured: INC0602443</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>12:58:01</td>
+<td class='step-details'>org.openqa.selenium.ElementNotInteractableException: Element <label id="label.ni.incident.u_incident_manager_required" class=" checkbox-label"> is not reachable by keyboard Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T14:04:26.12Z' System info: host: 'TP5VDIDEVTCM623', ip: '10.25.31.106', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_171' Driver info: org.openqa.selenium.firefox.FirefoxDriver Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 60.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:headless: false, moz:processID: 33176, moz:profile: C:\Users\UX011746\AppData\L..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: XP, platformName: XP, platformVersion: 6.1, rotatable: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}} Session ID: fcc392d3-8ff0-44f7-8b82-7040b2326154<img class="report-img" data-featherlight="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg" src="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg"></label></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='944e86cf-38c6-48e4-94a9-74bd0cc1a214'>
+<div class='test-head'>
+<span class='test-name'>Create Managed Incident </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2018-06-12 15:20:27</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2018-06-12 15:20:47</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 20s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>15:20:35</td>
+<td class='step-details'>New Incident Creation page</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>15:20:37</td>
+<td class='step-details'>Incident number captured: INC0602448</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>15:20:47</td>
+<td class='step-details'>org.openqa.selenium.ElementNotInteractableException: Element <label id="label.ni.incident.u_incident_manager_required" class=" checkbox-label"> is not reachable by keyboard Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T14:04:26.12Z' System info: host: 'TP5VDIDEVTCM623', ip: '10.25.31.106', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_171' Driver info: org.openqa.selenium.firefox.FirefoxDriver Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 60.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:headless: false, moz:processID: 26288, moz:profile: C:\Users\UX011746\AppData\L..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: XP, platformName: XP, platformVersion: 6.1, rotatable: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}} Session ID: 83dbe9f6-3043-44a5-a8a7-df5ae2879fc4<img class="report-img" data-featherlight="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg" src="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg"></label></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='042541eb-c637-4789-b152-dab9b6f5d565'>
+<div class='test-head'>
+<span class='test-name'>Create Managed Incident </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2018-06-12 15:27:32</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2018-06-12 15:27:52</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 20s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>15:27:40</td>
+<td class='step-details'>New Incident Creation page</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>15:27:41</td>
+<td class='step-details'>Incident number captured: INC0602449</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>15:27:52</td>
+<td class='step-details'>org.openqa.selenium.ElementNotInteractableException: Element <label id="label.ni.incident.u_incident_manager_required" class=" checkbox-label"> is not reachable by keyboard Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T14:04:26.12Z' System info: host: 'TP5VDIDEVTCM623', ip: '10.25.31.106', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_171' Driver info: org.openqa.selenium.firefox.FirefoxDriver Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 60.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:headless: false, moz:processID: 34076, moz:profile: C:\Users\UX011746\AppData\L..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: XP, platformName: XP, platformVersion: 6.1, rotatable: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}} Session ID: 06f472e2-752b-48a0-9f9c-625759f7cfe7<img class="report-img" data-featherlight="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg" src="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg"></label></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='b0ac70ec-f09a-4b19-8d06-3241136d9e5a'>
+<div class='test-head'>
+<span class='test-name'>Create Managed Incident </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2018-06-12 15:54:56</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2018-06-12 15:55:17</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 21s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>15:55:04</td>
+<td class='step-details'>New Incident Creation page</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>15:55:07</td>
+<td class='step-details'>Incident number captured: INC0602452</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>15:55:17</td>
+<td class='step-details'>org.openqa.selenium.ElementNotInteractableException: Element <label id="label.ni.incident.u_incident_manager_required" class=" checkbox-label"> is not reachable by keyboard Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T14:04:26.12Z' System info: host: 'TP5VDIDEVTCM623', ip: '10.25.31.106', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_171' Driver info: org.openqa.selenium.firefox.FirefoxDriver Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 60.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:headless: false, moz:processID: 11620, moz:profile: C:\Users\UX011746\AppData\L..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: XP, platformName: XP, platformVersion: 6.1, rotatable: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}} Session ID: b51a94c0-c88b-4507-898e-857539005f03<img class="report-img" data-featherlight="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg" src="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg"></label></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='9ca8846c-963e-4cd9-aef8-5e930aaae6f1'>
+<div class='test-head'>
+<span class='test-name'>Create Managed Incident </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2018-06-12 17:34:27</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2018-06-12 17:34:46</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 19s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>17:34:35</td>
+<td class='step-details'>New Incident Creation page</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>17:34:37</td>
+<td class='step-details'>Incident number captured: INC0602453</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>17:34:46</td>
+<td class='step-details'>org.openqa.selenium.ElementNotInteractableException: Element <label id="label.ni.incident.u_incident_manager_required" class=" checkbox-label"> is not reachable by keyboard Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T14:04:26.12Z' System info: host: 'TP5VDIDEVTCM623', ip: '10.25.31.106', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_171' Driver info: org.openqa.selenium.firefox.FirefoxDriver Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 60.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:headless: false, moz:processID: 11704, moz:profile: C:\Users\UX011746\AppData\L..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: XP, platformName: XP, platformVersion: 6.1, rotatable: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}} Session ID: 5633f866-b97f-4706-8b81-23a32477ef80<img class="report-img" data-featherlight="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg" src="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg"></label></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='2c434875-e7fa-4e8b-b64e-e79e94bf12c1'>
+<div class='test-head'>
+<span class='test-name'>Create Managed Incident </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2018-06-12 17:39:28</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2018-06-12 17:39:46</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 18s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>17:39:34</td>
+<td class='step-details'>New Incident Creation page</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>17:39:36</td>
+<td class='step-details'>Incident number captured: INC0602454</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>17:39:46</td>
+<td class='step-details'>org.openqa.selenium.ElementNotInteractableException: Element <label id="label.ni.incident.u_incident_manager_required" class=" checkbox-label"> is not reachable by keyboard Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T14:04:26.12Z' System info: host: 'TP5VDIDEVTCM623', ip: '10.25.31.106', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_171' Driver info: org.openqa.selenium.firefox.FirefoxDriver Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 60.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:headless: false, moz:processID: 34244, moz:profile: C:\Users\UX011746\AppData\L..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: XP, platformName: XP, platformVersion: 6.1, rotatable: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}} Session ID: bcb30c3a-18bc-4fb4-90f6-7ef028424b21<img class="report-img" data-featherlight="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg" src="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg"></label></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='e46b77bb-662e-4bf3-8e17-86f4c85178c5'>
+<div class='test-head'>
+<span class='test-name'>Create Managed Incident </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2018-06-12 17:45:14</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2018-06-12 17:45:35</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 21s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>17:45:22</td>
+<td class='step-details'>New Incident Creation page</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>17:45:25</td>
+<td class='step-details'>Incident number captured: INC0602455</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>17:45:35</td>
+<td class='step-details'>org.openqa.selenium.ElementNotInteractableException: Element <label id="label.ni.incident.u_incident_manager_required" class=" checkbox-label"> is not reachable by keyboard Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T14:04:26.12Z' System info: host: 'TP5VDIDEVTCM623', ip: '10.25.31.106', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_171' Driver info: org.openqa.selenium.firefox.FirefoxDriver Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 60.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:headless: false, moz:processID: 35812, moz:profile: C:\Users\UX011746\AppData\L..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: XP, platformName: XP, platformVersion: 6.1, rotatable: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}} Session ID: 8f24548f-0f45-49b8-b3d5-321492bbf47c<img class="report-img" data-featherlight="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg" src="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg"></label></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='ad8ea2fc-387c-439c-a102-0b40ec73c8e3'>
+<div class='test-head'>
+<span class='test-name'>Create Managed Incident </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2018-06-12 17:52:18</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2018-06-12 17:52:47</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 29s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>17:52:25</td>
+<td class='step-details'>New Incident Creation page</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>17:52:27</td>
+<td class='step-details'>Incident number captured: INC0602456</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>17:52:47</td>
+<td class='step-details'>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to no longer be visible: By.xpath: //label[@id='label.ni.incident.u_incident_manager_required'] (tried for 10 second(s) with 500 milliseconds interval) Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T14:04:26.12Z' System info: host: 'TP5VDIDEVTCM623', ip: '10.25.31.106', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_171' Driver info: org.openqa.selenium.firefox.FirefoxDriver Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 60.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:headless: false, moz:processID: 38340, moz:profile: C:\Users\UX011746\AppData\L..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: XP, platformName: XP, platformVersion: 6.1, rotatable: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}} Session ID: 9ca4dfab-60ff-4411-b876-527c46c5f772<img class="report-img" data-featherlight="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg" src="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg"></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='fc5b5651-f759-46fa-9630-4e48512a1ba7'>
+<div class='test-head'>
+<span class='test-name'>Create Managed Incident </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2018-06-13 12:16:04</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2018-06-13 12:16:34</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 30s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>12:16:11</td>
+<td class='step-details'>New Incident Creation page</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>12:16:15</td>
+<td class='step-details'>Incident number captured: INC0602466</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>12:16:34</td>
+<td class='step-details'>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to no longer be visible: By.xpath: //label[@id='label.ni.incident.u_incident_manager_required'] (tried for 10 second(s) with 500 milliseconds interval) Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T14:04:26.12Z' System info: host: 'TP5VDIDEVTCM623', ip: '10.25.31.106', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_171' Driver info: org.openqa.selenium.firefox.FirefoxDriver Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 60.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:headless: false, moz:processID: 35468, moz:profile: C:\Users\UX011746\AppData\L..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: XP, platformName: XP, platformVersion: 6.1, rotatable: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}} Session ID: 59256625-3974-4e26-8c4c-e8c1cc79df9d<img class="report-img" data-featherlight="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg" src="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg"></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='ee48272b-02f6-48d3-9009-593ca351e8f0'>
+<div class='test-head'>
+<span class='test-name'>Create Managed Incident </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2018-06-13 12:36:09</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2018-06-13 12:36:39</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 30s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>12:36:17</td>
+<td class='step-details'>New Incident Creation page</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>12:36:19</td>
+<td class='step-details'>Incident number captured: INC0602469</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>12:36:39</td>
+<td class='step-details'>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to no longer be visible: By.xpath: //label[@id='label.ni.incident.u_incident_manager_required'] (tried for 10 second(s) with 500 milliseconds interval) Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T14:04:26.12Z' System info: host: 'TP5VDIDEVTCM623', ip: '10.25.31.106', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_171' Driver info: org.openqa.selenium.firefox.FirefoxDriver Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 60.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:headless: false, moz:processID: 35168, moz:profile: C:\Users\UX011746\AppData\L..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: XP, platformName: XP, platformVersion: 6.1, rotatable: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}} Session ID: cb398164-1e70-4513-b97d-4a8ff399f55c<img class="report-img" data-featherlight="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg" src="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg"></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='83459f61-99c7-41a2-a9ae-040b658a5913'>
+<div class='test-head'>
+<span class='test-name'>Create Managed Incident </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2018-06-13 14:28:37</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2018-06-13 14:29:20</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 43s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>14:28:45</td>
+<td class='step-details'>New Incident Creation page</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>14:29:20</td>
+<td class='step-details'>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for presence of any elements located by By.id: sys_readonly.incident.number (tried for 30 second(s) with 500 milliseconds interval) Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T14:04:26.12Z' System info: host: 'TP5VDIDEVTCM623', ip: '10.25.31.106', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_171' Driver info: org.openqa.selenium.firefox.FirefoxDriver Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 60.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:headless: false, moz:processID: 28904, moz:profile: C:\Users\UX011746\AppData\L..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: XP, platformName: XP, platformVersion: 6.1, rotatable: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}} Session ID: 6ed2497c-2421-44b0-8781-32637af571a0<img class="report-img" data-featherlight="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg" src="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg"></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='d5630384-f301-4e3f-a035-3d1b67472ed6'>
+<div class='test-head'>
+<span class='test-name'>Create Managed Incident </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2018-06-13 14:31:46</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2018-06-13 14:32:34</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 48s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>14:31:52</td>
+<td class='step-details'>New Incident Creation page</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>14:31:54</td>
+<td class='step-details'>Incident number captured: INC0602490</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>14:32:34</td>
+<td class='step-details'>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to no longer be visible: By.xpath: //label[@id='label.ni.incident.u_incident_manager_required'] (tried for 30 second(s) with 500 milliseconds interval) Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T14:04:26.12Z' System info: host: 'TP5VDIDEVTCM623', ip: '10.25.31.106', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_171' Driver info: org.openqa.selenium.firefox.FirefoxDriver Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 60.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:headless: false, moz:processID: 35576, moz:profile: C:\Users\UX011746\AppData\L..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: XP, platformName: XP, platformVersion: 6.1, rotatable: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}} Session ID: dca28719-c17b-4722-a0cd-47ac5712f003<img class="report-img" data-featherlight="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg" src="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg"></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='d7300b79-0c5f-4b9f-b2d8-8b6810c6a1f2'>
+<div class='test-head'>
+<span class='test-name'>Create Managed Incident </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2018-06-13 15:46:02</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2018-06-13 15:46:53</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 51s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>15:46:10</td>
+<td class='step-details'>New Incident Creation page</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>15:46:14</td>
+<td class='step-details'>Incident number captured: INC0602496</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>15:46:53</td>
+<td class='step-details'>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to no longer be visible: By.xpath: //label[@id='label.ni.incident.u_incident_manager_required'] (tried for 30 second(s) with 500 milliseconds interval) Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T14:04:26.12Z' System info: host: 'TP5VDIDEVTCM623', ip: '10.25.31.106', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_171' Driver info: org.openqa.selenium.firefox.FirefoxDriver Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 60.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:headless: false, moz:processID: 30692, moz:profile: C:\Users\UX011746\AppData\L..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: XP, platformName: XP, platformVersion: 6.1, rotatable: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}} Session ID: 8bdc2826-e00b-489a-bf71-a3ad751b2b6f<img class="report-img" data-featherlight="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg" src="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg"></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='e090f7ee-6570-4502-9c05-9333d5072516'>
+<div class='test-head'>
+<span class='test-name'>Create Managed Incident </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2018-06-13 16:02:09</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2018-06-13 16:02:57</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 48s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>16:02:15</td>
+<td class='step-details'>New Incident Creation page</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>16:02:17</td>
+<td class='step-details'>Incident number captured: INC0602500</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>16:02:57</td>
+<td class='step-details'>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to no longer be visible: By.id: label.ni.incident.u_incident_manager_required (tried for 30 second(s) with 500 milliseconds interval) Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T14:04:26.12Z' System info: host: 'TP5VDIDEVTCM623', ip: '10.25.31.106', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_171' Driver info: org.openqa.selenium.firefox.FirefoxDriver Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 60.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:headless: false, moz:processID: 37740, moz:profile: C:\Users\UX011746\AppData\L..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: XP, platformName: XP, platformVersion: 6.1, rotatable: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}} Session ID: 141a4246-b6de-4e58-917b-104ddd0d88b8<img class="report-img" data-featherlight="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg" src="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg"></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='b1c8f88e-b4c8-4387-92ef-d8df20018e3b'>
+<div class='test-head'>
+<span class='test-name'>Create Managed Incident </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2018-06-13 16:12:30</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2018-06-13 16:13:08</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 38s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>16:12:45</td>
+<td class='step-details'>New Incident Creation page</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>16:12:47</td>
+<td class='step-details'>Incident number captured: INC0602501</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>16:13:04</td>
+<td class='step-details'>Unable to create a managed incident ticket</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>16:13:08</td>
+<td class='step-details'>java.lang.AssertionError: expected [true] but found [false]<img class="report-img" data-featherlight="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg" src="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg"></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='574002fa-17fe-4be1-9c83-60003f274a0b'>
+<div class='test-head'>
+<span class='test-name'>Create Managed Incident </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2018-06-13 16:14:08</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2018-06-13 16:14:40</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 32s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>16:14:16</td>
+<td class='step-details'>New Incident Creation page</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>16:14:18</td>
+<td class='step-details'>Incident number captured: INC0602502</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>16:14:37</td>
+<td class='step-details'>Unable to create a managed incident ticket</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>16:14:40</td>
+<td class='step-details'>java.lang.AssertionError: expected [true] but found [false]<img class="report-img" data-featherlight="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg" src="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg"></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='fbf0b64f-4fd8-44d9-9a16-c3fb9b8d60e1'>
+<div class='test-head'>
+<span class='test-name'>Create Managed Incident </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2018-06-13 16:38:24</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2018-06-13 16:38:52</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 28s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>16:38:30</td>
+<td class='step-details'>New Incident Creation page</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>16:38:32</td>
+<td class='step-details'>Incident number captured: INC0602503</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>16:38:49</td>
+<td class='step-details'>Unable to create a managed incident ticket</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>16:38:52</td>
+<td class='step-details'>java.lang.AssertionError: expected [true] but found [false]<img class="report-img" data-featherlight="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg" src="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg"></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='d9eca044-ec74-439f-8ff4-46fff228d7a0'>
+<div class='test-head'>
+<span class='test-name'>Create Managed Incident </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2018-06-14 10:34:46</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2018-06-14 10:35:07</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 21s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>10:35:07</td>
+<td class='step-details'>org.openqa.selenium.NoSuchElementException: Unable to locate element: /html/body/div/div/div/nav/div/div[3]/div/div/concourse-application-tree/ul/li[10]/ul/li[1]/div/ul/li[1]/a/div[1]/div For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T14:04:26.12Z' System info: host: 'TP5VDIDEVTCM623', ip: '10.25.31.106', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_171' Driver info: org.openqa.selenium.firefox.FirefoxDriver Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 60.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:headless: false, moz:processID: 44764, moz:profile: C:\Users\UX011746\AppData\L..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: XP, platformName: XP, platformVersion: 6.1, rotatable: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}} Session ID: da45cd3d-a3c7-4556-aab2-dd16ea5132ff *** Element info: {Using=xpath, value=/html/body/div/div/div/nav/div/div[3]/div/div/concourse-application-tree/ul/li[10]/ul/li[1]/div/ul/li[1]/a/div[1]/div}<img class="report-img" data-featherlight="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg" src="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg"></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='536771e7-c47b-41e9-9b45-b87aabcc78b5'>
+<div class='test-head'>
+<span class='test-name'>Create Managed Incident </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2018-06-14 10:43:51</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2018-06-14 10:44:11</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 20s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>10:44:11</td>
+<td class='step-details'>org.openqa.selenium.NoSuchElementException: Unable to locate element: /html/body/div/div/div/nav/div/div[3]/div/div/concourse-application-tree/ul/li[10]/ul/li[1]/div/ul/li[1]/a/div[1]/div For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T14:04:26.12Z' System info: host: 'TP5VDIDEVTCM623', ip: '10.25.31.106', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_171' Driver info: org.openqa.selenium.firefox.FirefoxDriver Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 60.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:headless: false, moz:processID: 45004, moz:profile: C:\Users\UX011746\AppData\L..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: XP, platformName: XP, platformVersion: 6.1, rotatable: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}} Session ID: 37a104cf-48d2-4aa6-9473-a76c321aded7 *** Element info: {Using=xpath, value=/html/body/div/div/div/nav/div/div[3]/div/div/concourse-application-tree/ul/li[10]/ul/li[1]/div/ul/li[1]/a/div[1]/div}<img class="report-img" data-featherlight="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg" src="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg"></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='77913d76-6683-4049-948b-3d1d9d2f4206'>
+<div class='test-head'>
+<span class='test-name'>Create Managed Incident </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2018-06-14 10:49:29</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2018-06-14 10:49:47</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 18s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>10:49:47</td>
+<td class='step-details'>org.openqa.selenium.NoSuchElementException: Unable to locate element: /html/body/div/div/div/nav/div/div[3]/div/div/concourse-application-tree/ul/li[10]/ul/li[1]/div/ul/li[1]/a/div[1]/div For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T14:04:26.12Z' System info: host: 'TP5VDIDEVTCM623', ip: '10.25.31.106', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_171' Driver info: org.openqa.selenium.firefox.FirefoxDriver Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 60.0.2, javascriptEnabled: true, moz:accessibilityChecks: false, moz:headless: false, moz:processID: 36936, moz:profile: C:\Users\UX011746\AppData\L..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: XP, platformName: XP, platformVersion: 6.1, rotatable: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}} Session ID: cce529ad-526b-4bff-9450-0883270742e8 *** Element info: {Using=xpath, value=/html/body/div/div/div/nav/div/div[3]/div/div/concourse-application-tree/ul/li[10]/ul/li[1]/div/ul/li[1]/a/div[1]/div}<img class="report-img" data-featherlight="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg" src="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg"></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='03277a7b-ea5a-412d-b615-cebee7357d5a'>
+<div class='test-head'>
+<span class='test-name'>Create Managed Incident </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2018-06-14 11:00:17</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2018-06-14 11:00:35</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 18s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>11:00:35</td>
+<td class='step-details'>org.openqa.selenium.NoSuchElementException: Unable to locate element: .sn\-widget\-list\-title\ ng\-binding For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T14:04:26.12Z' System info: host: 'TP5VDIDEVTCM623', ip: '10.25.31.106', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_171' Driver info: org.openqa.selenium.firefox.FirefoxDriver Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 60.0.2, javascriptEnabled: true, moz:accessibilityChecks: false, moz:headless: false, moz:processID: 34500, moz:profile: C:\Users\UX011746\AppData\L..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: XP, platformName: XP, platformVersion: 6.1, rotatable: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}} Session ID: 21265756-5e21-40b2-9259-e7beddaa7bb0 *** Element info: {Using=class name, value=sn-widget-list-title ng-binding}<img class="report-img" data-featherlight="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg" src="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg"></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='10ca96f6-3ee4-4a2b-a31d-b1be99bc09ce'>
+<div class='test-head'>
+<span class='test-name'>Create Managed Incident </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2018-06-14 11:24:07</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2018-06-14 11:24:47</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 40s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>11:24:13</td>
+<td class='step-details'>New Incident Creation page</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>11:24:47</td>
+<td class='step-details'>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for presence of any elements located by By.id: sys_readonly.incident.number (tried for 30 second(s) with 500 milliseconds interval) Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T14:04:26.12Z' System info: host: 'TP5VDIDEVTCM623', ip: '10.25.31.106', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_171' Driver info: org.openqa.selenium.firefox.FirefoxDriver Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 60.0.2, javascriptEnabled: true, moz:accessibilityChecks: false, moz:headless: false, moz:processID: 43400, moz:profile: C:\Users\UX011746\AppData\L..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: XP, platformName: XP, platformVersion: 6.1, rotatable: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}} Session ID: 4fb4f710-1971-44d1-a36e-40c74d38f33f<img class="report-img" data-featherlight="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg" src="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg"></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='19d4fd84-9ae2-410b-8981-217cf96406b0'>
+<div class='test-head'>
+<span class='test-name'>Create Managed Incident </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2018-06-14 11:39:14</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2018-06-14 11:39:55</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 41s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>11:39:55</td>
+<td class='step-details'>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for presence of any elements located by By.xpath: //a[text()='Create New'] (tried for 30 second(s) with 500 milliseconds interval) Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T14:04:26.12Z' System info: host: 'TP5VDIDEVTCM623', ip: '10.25.31.106', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_171' Driver info: org.openqa.selenium.firefox.FirefoxDriver Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 60.0.2, javascriptEnabled: true, moz:accessibilityChecks: false, moz:headless: false, moz:processID: 30536, moz:profile: C:\Users\UX011746\AppData\L..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: XP, platformName: XP, platformVersion: 6.1, rotatable: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}} Session ID: 2cb2cb2d-c4ee-4d93-9407-eff917e3566c<img class="report-img" data-featherlight="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg" src="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg"></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='b722f0d1-9117-443a-8a3d-3ac865f215d5'>
+<div class='test-head'>
+<span class='test-name'>Create Managed Incident </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2018-06-14 11:42:51</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2018-06-14 11:43:11</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 20s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>11:42:57</td>
+<td class='step-details'>New Incident Creation page</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>11:43:11</td>
+<td class='step-details'>org.openqa.selenium.WebDriverException: Failed to interpret value as array Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T14:04:26.12Z' System info: host: 'TP5VDIDEVTCM623', ip: '10.25.31.106', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_171' Driver info: org.openqa.selenium.firefox.FirefoxDriver Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 60.0.2, javascriptEnabled: true, moz:accessibilityChecks: false, moz:headless: false, moz:processID: 44828, moz:profile: C:\Users\UX011746\AppData\L..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: XP, platformName: XP, platformVersion: 6.1, rotatable: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}} Session ID: 987eaca0-0d05-4aa1-8307-7cf5400ba7a8 *** Element info: {Using=id, value=sys_readonly.incident.number}<img class="report-img" data-featherlight="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg" src="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg"></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='d89cb2e0-2c83-4618-a615-f3521797f036'>
+<div class='test-head'>
+<span class='test-name'>Create Managed Incident </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2018-06-14 11:52:49</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2018-06-14 11:53:30</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 41s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>11:52:55</td>
+<td class='step-details'>New Incident Creation page</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>11:53:30</td>
+<td class='step-details'>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for presence of any elements located by By.id: sys_readonly.incident.number (tried for 30 second(s) with 500 milliseconds interval) Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T14:04:26.12Z' System info: host: 'TP5VDIDEVTCM623', ip: '10.25.31.106', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_171' Driver info: org.openqa.selenium.firefox.FirefoxDriver Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 60.0.2, javascriptEnabled: true, moz:accessibilityChecks: false, moz:headless: false, moz:processID: 43444, moz:profile: C:\Users\UX011746\AppData\L..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: XP, platformName: XP, platformVersion: 6.1, rotatable: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}} Session ID: 9bdb3222-0f38-4967-a190-4cacc2a62321<img class="report-img" data-featherlight="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg" src="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg"></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='c8774de0-48b3-4e11-84dd-e6751c25f5b6'>
+<div class='test-head'>
+<span class='test-name'>Create Managed Incident </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2018-06-14 11:57:07</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2018-06-14 11:57:47</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 40s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>11:57:13</td>
+<td class='step-details'>New Incident Creation page</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>11:57:47</td>
+<td class='step-details'>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for presence of any elements located by By.id: sys_readonly.incident.number (tried for 30 second(s) with 500 milliseconds interval) Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T14:04:26.12Z' System info: host: 'TP5VDIDEVTCM623', ip: '10.25.31.106', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_171' Driver info: org.openqa.selenium.firefox.FirefoxDriver Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 60.0.2, javascriptEnabled: true, moz:accessibilityChecks: false, moz:headless: false, moz:processID: 40892, moz:profile: C:\Users\UX011746\AppData\L..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: XP, platformName: XP, platformVersion: 6.1, rotatable: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}} Session ID: 4829ffeb-d94b-4d2b-819a-9160b9dec304<img class="report-img" data-featherlight="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg" src="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg"></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='87b148ac-72d0-4c6b-9668-e72fe611a9f5'>
+<div class='test-head'>
+<span class='test-name'>Create Managed Incident </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2018-06-14 12:01:11</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2018-06-14 12:01:44</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 33s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>12:01:18</td>
+<td class='step-details'>New Incident Creation page</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>12:01:21</td>
+<td class='step-details'>Incident number captured: INC0602520</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>12:01:40</td>
+<td class='step-details'>Unable to create a managed incident ticket</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>12:01:44</td>
+<td class='step-details'>java.lang.AssertionError: expected [true] but found [false]<img class="report-img" data-featherlight="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg" src="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg"></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='111ad78d-3f69-41d8-bcc8-3f9bdb5b1555'>
+<div class='test-head'>
+<span class='test-name'>Create Managed Incident </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2018-06-14 12:14:40</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2018-06-14 12:15:10</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 30s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>12:14:46</td>
+<td class='step-details'>New Incident Creation page</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>12:14:48</td>
+<td class='step-details'>Incident number captured: INC0602522</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>12:15:06</td>
+<td class='step-details'>Unable to create a managed incident ticket</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>12:15:10</td>
+<td class='step-details'>java.lang.AssertionError: expected [true] but found [false]<img class="report-img" data-featherlight="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg" src="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg"></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='ac22ae32-4f26-4e90-81fa-3242add46fd0'>
+<div class='test-head'>
+<span class='test-name'>Create Managed Incident </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2018-06-14 12:35:03</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2018-06-14 12:35:53</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 50s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>12:35:10</td>
+<td class='step-details'>New Incident Creation page</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>12:35:12</td>
+<td class='step-details'>Incident number captured: INC0602523</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>12:35:53</td>
+<td class='step-details'>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to no longer be visible: By.id: label.ni.incident.u_incident_manager_required (tried for 30 second(s) with 500 milliseconds interval) Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T14:04:26.12Z' System info: host: 'TP5VDIDEVTCM623', ip: '10.25.31.106', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_171' Driver info: org.openqa.selenium.firefox.FirefoxDriver Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 60.0.2, javascriptEnabled: true, moz:accessibilityChecks: false, moz:headless: false, moz:processID: 41556, moz:profile: C:\Users\UX011746\AppData\L..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: XP, platformName: XP, platformVersion: 6.1, rotatable: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}} Session ID: bde465c6-b413-4f62-96ec-1814a13be279<img class="report-img" data-featherlight="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg" src="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg"></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='b33bdda3-35bb-4ada-a65f-8f40ca39fe45'>
+<div class='test-head'>
+<span class='test-name'>Create Managed Incident </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2018-06-14 12:40:10</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2018-06-14 12:40:29</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 19s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>12:40:17</td>
+<td class='step-details'>New Incident Creation page</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>12:40:19</td>
+<td class='step-details'>Incident number captured: INC0602524</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>12:40:29</td>
+<td class='step-details'>org.openqa.selenium.ElementNotInteractableException: Element <label id="label.ni.incident.u_incident_manager_required" class=" checkbox-label"> is not reachable by keyboard Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T14:04:26.12Z' System info: host: 'TP5VDIDEVTCM623', ip: '10.25.31.106', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_171' Driver info: org.openqa.selenium.firefox.FirefoxDriver Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 60.0.2, javascriptEnabled: true, moz:accessibilityChecks: false, moz:headless: false, moz:processID: 44940, moz:profile: C:\Users\UX011746\AppData\L..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: XP, platformName: XP, platformVersion: 6.1, rotatable: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}} Session ID: 018861e8-596c-4a72-9deb-f40d7c0ff34c<img class="report-img" data-featherlight="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg" src="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg"></label></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='f2d873af-c8b5-4cda-8797-2fb52291a2bd'>
+<div class='test-head'>
+<span class='test-name'>Create Managed Incident </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2018-06-14 12:46:19</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2018-06-14 12:46:48</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 29s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>12:46:25</td>
+<td class='step-details'>New Incident Creation page</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>12:46:27</td>
+<td class='step-details'>Incident number captured: INC0602525</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>12:46:48</td>
+<td class='step-details'>org.openqa.selenium.NoSuchElementException: Unable to locate element: input[id$='label.ni.incident.u_incident_manager_required'] For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T14:04:26.12Z' System info: host: 'TP5VDIDEVTCM623', ip: '10.25.31.106', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_171' Driver info: org.openqa.selenium.firefox.FirefoxDriver Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 60.0.2, javascriptEnabled: true, moz:accessibilityChecks: false, moz:headless: false, moz:processID: 31184, moz:profile: C:\Users\UX011746\AppData\L..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: XP, platformName: XP, platformVersion: 6.1, rotatable: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}} Session ID: 6f7fe1ea-6b67-4c0e-8f80-d1ece0a25ca8 *** Element info: {Using=css selector, value=input[id$='label.ni.incident.u_incident_manager_required']}<img class="report-img" data-featherlight="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg" src="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg"></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='de3d9700-16b7-4c35-9707-8a0ae2d5a570'>
+<div class='test-head'>
+<span class='test-name'>Create Managed Incident </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2018-06-14 12:49:03</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2018-06-14 12:49:33</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 30s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>12:49:11</td>
+<td class='step-details'>New Incident Creation page</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>12:49:13</td>
+<td class='step-details'>Incident number captured: INC0602526</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>12:49:33</td>
+<td class='step-details'>org.openqa.selenium.NoSuchElementException: Unable to locate element: .\ checkbox\-label For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T14:04:26.12Z' System info: host: 'TP5VDIDEVTCM623', ip: '10.25.31.106', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_171' Driver info: org.openqa.selenium.firefox.FirefoxDriver Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 60.0.2, javascriptEnabled: true, moz:accessibilityChecks: false, moz:headless: false, moz:processID: 35224, moz:profile: C:\Users\UX011746\AppData\L..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: XP, platformName: XP, platformVersion: 6.1, rotatable: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}} Session ID: ec5da462-897b-46b2-998f-9c5364063de9 *** Element info: {Using=class name, value= checkbox-label}<img class="report-img" data-featherlight="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg" src="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg"></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='7b0e2761-8bf3-4e5f-b199-cab5ca487c9b'>
+<div class='test-head'>
+<span class='test-name'>Create Managed Incident </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2018-06-14 12:56:32</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2018-06-14 12:56:50</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 18s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>12:56:38</td>
+<td class='step-details'>New Incident Creation page</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>12:56:40</td>
+<td class='step-details'>Incident number captured: INC0602527</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>12:56:50</td>
+<td class='step-details'>org.openqa.selenium.ElementNotInteractableException: Element <label id="label.ni.incident.u_incident_manager_required" class=" checkbox-label"> is not reachable by keyboard Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T14:04:26.12Z' System info: host: 'TP5VDIDEVTCM623', ip: '10.25.31.106', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_171' Driver info: org.openqa.selenium.firefox.FirefoxDriver Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 60.0.2, javascriptEnabled: true, moz:accessibilityChecks: false, moz:headless: false, moz:processID: 35048, moz:profile: C:\Users\UX011746\AppData\L..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: XP, platformName: XP, platformVersion: 6.1, rotatable: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}} Session ID: eb35e07f-b7fe-4008-8cda-9e3b3a3a6e3e<img class="report-img" data-featherlight="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg" src="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg"></label></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='130e1bf4-2638-4aa8-97c1-afb0a33e6688'>
+<div class='test-head'>
+<span class='test-name'>Create Managed Incident </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2018-06-14 13:01:25</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2018-06-14 13:01:44</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 19s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>13:01:31</td>
+<td class='step-details'>New Incident Creation page</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>13:01:33</td>
+<td class='step-details'>Incident number captured: INC0602528</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>13:01:44</td>
+<td class='step-details'>org.openqa.selenium.ElementNotInteractableException: Element <label id="label.ni.incident.u_incident_manager_required" class=" checkbox-label"> is not reachable by keyboard Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T14:04:26.12Z' System info: host: 'TP5VDIDEVTCM623', ip: '10.25.31.106', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_171' Driver info: org.openqa.selenium.firefox.FirefoxDriver Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 60.0.2, javascriptEnabled: true, moz:accessibilityChecks: false, moz:headless: false, moz:processID: 16224, moz:profile: C:\Users\UX011746\AppData\L..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: XP, platformName: XP, platformVersion: 6.1, rotatable: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}} Session ID: 71c5bc2e-415f-4453-a4bc-fd1b60dd2b62<img class="report-img" data-featherlight="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg" src="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg"></label></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='30d93e2f-4436-46c8-b38f-16c6e6461136'>
+<div class='test-head'>
+<span class='test-name'>Create Managed Incident </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2018-06-14 13:02:59</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2018-06-14 13:03:21</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 22s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>13:03:08</td>
+<td class='step-details'>New Incident Creation page</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>13:03:10</td>
+<td class='step-details'>Incident number captured: INC0602529</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>13:03:21</td>
+<td class='step-details'>org.openqa.selenium.ElementNotInteractableException: Element <label id="label.ni.incident.u_incident_manager_required" class=" checkbox-label"> is not reachable by keyboard Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T14:04:26.12Z' System info: host: 'TP5VDIDEVTCM623', ip: '10.25.31.106', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_171' Driver info: org.openqa.selenium.firefox.FirefoxDriver Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 60.0.2, javascriptEnabled: true, moz:accessibilityChecks: false, moz:headless: false, moz:processID: 22560, moz:profile: C:\Users\UX011746\AppData\L..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: XP, platformName: XP, platformVersion: 6.1, rotatable: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}} Session ID: dc2de643-af84-4d7d-bada-1ce3a1cade18<img class="report-img" data-featherlight="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg" src="file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg"></label></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='0b9d7274-493c-46cb-9913-fa3571b84a67'>
+<div class='test-head'>
+<span class='test-name'>Create Managed Incident </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2018-10-11 18:08:35</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2018-10-11 18:09:01</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 25s+811ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>18:08:48</td>
+<td class='step-details'>New Incident Creation page</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>18:08:51</td>
+<td class='step-details'>Incident number captured: INC1021403</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>18:09:01</td>
+<td class='step-details'>org.openqa.selenium.ElementNotInteractableException: Element <label id="label.ni.incident.u_incident_manager_required" class=" checkbox-label"> is not reachable by keyboard
+Build info: version: '3.13.0', revision: '2f0d292', time: '2018-06-25T15:24:21.231Z'
+System info: host: 'TP5VDIDEVTCM623', ip: '10.25.31.106', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_171'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 62.0, javascriptEnabled: true, moz:accessibilityChecks: false, moz:headless: false, moz:processID: 9876, moz:profile: C:\Users\UX011746\AppData\L..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: XP, platformName: XP, platformVersion: 6.1, rotatable: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}}
+Session ID: aacce894-9e67-4939-82c5-e76237f3d50c<img class='report-img' data-featherlight='file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg' src='file:///C:\Users\UX011746\Desktop\ServiceNowQAAutomation\ServiceNowQAAutomation\SNOWQA\target\snapshots\testCreateManagedIncidentTicket.jpg' /></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id='test-details-wrapper' class='col _addedCell2'>
+<div class='contents'>
+<div class='card-panel details-view'>
+<h5 class='details-name'></h5>
+<div class='details-container'>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- /tests -->
+
+<!-- categories -->
+<!-- /categories -->
+
+<!-- exceptions -->
+<!-- /exceptions -->
+
+<!-- testrunner logs -->
+<!-- /testrunner logs -->
+
+</div>
+<!-- /container -->
+
+<!-- test dashboard counts setting -->
+<div id='test-count-setting' class='modal bottom-sheet'> 
+<div class='modal-content'> 
+<h5>Configure Tests Count Setting</h5> 
+<input name='test-count-setting' type='radio' id='parentWithoutNodes' class='with-gap'> 
+<label for='parentWithoutNodes'>Parent Tests Only (Does not include child nodes in counts)</label> 
+<br> 
+<input name='test-count-setting' type='radio' id='parentWithoutNodesAndNodes' class='with-gap'> 
+<label for='parentWithoutNodesAndNodes'>Parent Tests Without Child Tests + Child Tests</label> 
+<br> 
+<input name='test-count-setting' type='radio' id='childNodes' class='with-gap'> 
+<label for='childNodes'>Child Tests Only</label> 
+</div> 
+<div class='modal-footer'> 
+<a href='#!' class='modal-action modal-close waves-effect waves-green btn'>Save</a> 
+</div> 
+</div>
+<!-- /test dashboard counts setting -->
+
+<!-- filter for step status -->
+<div id='step-status-filter' class='modal bottom-sheet'> 
+<div class='modal-content'> 
+<h5>Select status</h5> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-pass'> 
+<label for='step-dashboard-filter-pass'>Pass</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-fail'> 
+<label for='step-dashboard-filter-fail'>Fail</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-fatal'> 
+<label for='step-dashboard-filter-fatal'>Fatal</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-error'> 
+<label for='step-dashboard-filter-error'>Error</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-warning'> 
+<label for='step-dashboard-filter-warning'>Warning</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-skip'> 
+<label for='step-dashboard-filter-skip'>Skipped</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-info'> 
+<label for='step-dashboard-filter-info'>Info</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-unknown'> 
+<label for='step-dashboard-filter-unknown'>Unknown</label> 
+</div>
+<div class='modal-footer'> 
+<a href='#!' class='modal-action modal-close waves-effect waves-green btn'>Save</a> 
+</div> 
+</div>
+<!-- /filter for step status -->
+
+<script src='https://cdn.rawgit.com/anshooarora/extentreports/c936a26fc8bb9c5fc0253b5bc6f289e1d14bb595/cdn/extent.js' type='text/javascript'></script>
+
+<script>$(document).ready(function() { $('.logo span').html('ExtentReports'); });</script>
+<script>
+
+            
+                $(document).ready(function() {
+                    
+                });
+            
+        
+</script>
+</body>
+</html>

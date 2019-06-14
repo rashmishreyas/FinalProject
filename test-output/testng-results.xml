@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="1" total="1" passed="0">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="57761" started-at="2019-06-03T06:17:59Z" finished-at="2019-06-03T06:18:56Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="57761" started-at="2019-06-03T06:17:59Z" finished-at="2019-06-03T06:18:56Z">
+      <class name="testcase.FinalProblemManagement">
+        <test-method status="PASS" signature="startReport()[pri:0, instance:testcase.FinalProblemManagement@4566e5bd]" name="startReport" is-config="true" duration-ms="407" started-at="2019-06-03T11:47:59Z" finished-at="2019-06-03T11:47:59Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- startReport -->
+        <test-method status="FAIL" signature="testCreatedProblemRequest()[pri:0, instance:testcase.FinalProblemManagement@4566e5bd]" name="testCreatedProblemRequest" duration-ms="56792" started-at="2019-06-03T11:47:59Z" description="-----Create Problem Test Case-----" finished-at="2019-06-03T11:48:56Z">
+          <exception class="java.lang.NullPointerException">
+            <full-stacktrace>
+              <![CDATA[java.lang.NullPointerException
+	at com.servicenow.genericlibraries.ExtentReport.reportLog(ExtentReport.java:43)
+	at com.servicenow.applicationspecificlibraries.ProblemReusables.verifyProblemCreation(ProblemReusables.java:258)
+	at testcase.FinalProblemManagement.testCreatedProblemRequest(FinalProblemManagement.java:99)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:80)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
+	at org.testng.TestRunner.privateRun(TestRunner.java:767)
+	at org.testng.TestRunner.run(TestRunner.java:617)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:329)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:240)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1198)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1123)
+	at org.testng.TestNG.run(TestNG.java:1031)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.NullPointerException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testCreatedProblemRequest -->
+        <test-method status="PASS" signature="getResult(org.testng.ITestResult)[pri:0, instance:testcase.FinalProblemManagement@4566e5bd]" name="getResult" is-config="true" duration-ms="16" started-at="2019-06-03T11:48:56Z" finished-at="2019-06-03T11:48:56Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=testCreatedProblemRequest status=FAILURE method=FinalProblemManagement.testCreatedProblemRequest()[pri:0, instance:testcase.FinalProblemManagement@4566e5bd] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getResult -->
+        <test-method status="PASS" signature="endReport()[pri:0, instance:testcase.FinalProblemManagement@4566e5bd]" name="endReport" is-config="true" duration-ms="531" started-at="2019-06-03T11:48:56Z" finished-at="2019-06-03T11:48:56Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- endReport -->
+        <test-method status="FAIL" signature="afterSuite()[pri:0, instance:testcase.FinalProblemManagement@4566e5bd]" name="afterSuite" is-config="true" duration-ms="0" started-at="2019-06-03T11:48:56Z" finished-at="2019-06-03T11:48:56Z">
+          <exception class="java.lang.RuntimeException">
+            <message>
+              <![CDATA[javax.mail.AuthenticationFailedException: 535 5.7.3 Authentication unsuccessful [SN6PR04CA0019.namprd04.prod.outlook.com]
+]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.RuntimeException: javax.mail.AuthenticationFailedException: 535 5.7.3 Authentication unsuccessful [SN6PR04CA0019.namprd04.prod.outlook.com]
+
+	at testcase.FinalProblemManagement.afterSuite(FinalProblemManagement.java:1376)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:80)
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:564)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:213)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:138)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:308)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:240)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1198)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1123)
+	at org.testng.TestNG.run(TestNG.java:1031)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+Caused by: javax.mail.AuthenticationFailedException: 535 5.7.3 Authentication unsuccessful [SN6PR04CA0019.namprd04.prod.outlook.com]
+
+	at com.sun.mail.smtp.SMTPTransport$Authenticator.authenticate(SMTPTransport.java:648)
+	at com.sun.mail.smtp.SMTPTransport.protocolConnect(SMTPTransport.java:583)
+	at javax.mail.Service.connect(Service.java:313)
+	at javax.mail.Service.connect(Service.java:172)
+	at javax.mail.Service.connect(Service.java:121)
+	at javax.mail.Transport.send0(Transport.java:190)
+	at javax.mail.Transport.send(Transport.java:120)
+	at testcase.FinalProblemManagement.afterSuite(FinalProblemManagement.java:1371)
+	... 18 more
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.RuntimeException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterSuite -->
+      </class> <!-- testcase.FinalProblemManagement -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

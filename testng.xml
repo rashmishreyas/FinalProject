@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="SnowSuite" parallel="none">
+  <test name="SnowTest">
+    <classes>
+      <class name="testcase.loginTest"/>
+      <class name="testcase.readjson"/>
+      <class name="testcase.changeManagement"/>
+    </classes>
+  </test> <!-- SnowTest -->
+</suite> <!-- SnowSuite -->
