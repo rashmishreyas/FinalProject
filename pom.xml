@@ -126,9 +126,7 @@
 		 
 		 
 		 
-		 <plugins>
-    ...
-        <plugin>
+		 <plugin>
             <artifactId>maven-compiler-plugin</artifactId>
             <version>3.1</version>
             <configuration>
@@ -136,7 +134,6 @@
                 <executable>C:\Program Files\Java\jdk1.8.0_171\bin\javac.exe</executable>
             </configuration>
         </plugin>
-    </plugins>
 		 
 	<!-- Post-Man plugin -->
 		 <plugin>
