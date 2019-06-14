@@ -124,6 +124,20 @@
 			</configuration>
 		 </plugin>
 		 
+		 
+		 
+		 <plugins>
+    ...
+        <plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.1</version>
+            <configuration>
+                <fork>true</fork>
+                <executable>C:\Program Files\Java\jdk1.7.0_45\bin\javac.exe</executable>
+            </configuration>
+        </plugin>
+    </plugins>
+		 
 	<!-- Post-Man plugin -->
 		 <plugin>
 			<groupId>ch.fortysix</groupId>
